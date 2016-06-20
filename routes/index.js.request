@@ -1,0 +1,25 @@
+var express = require('express');
+var request = require('unirest');
+
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+/* GET some content from an external API provider */
+router.get('/movies2', function(req,res) {
+   res.render('movies', { title: 'Movies' });
+});
+
+/* GET some content from an external API provider */
+router.get('/movies', function(req,res) {
+   request
+     .get('http://data.tmsapi.com/v1.1/movies/showings?startDate=2016-06-17&zip=94063&api_key=wrf55khh44tdm93sj9t7gyaq')
+     .on('response', function(response) {
+	console.log(response.statusCode) // 200
+     })
+});
+
+module.exports = router;
