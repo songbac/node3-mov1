@@ -1,4 +1,11 @@
 #!/bin/sh
 
-mongod --dbpath /home/vagrant/node/node3-mov1/data
+CURR_DIR=`pwd`
+DATA_DIR=${CURR_DIR}/data
+
+if [ ! -d ${DATA_DIR} ]; then
+	mkdir ${DATA_DIR}
+fi
+
+mongod --dbpath ${DATA_DIR}
 
