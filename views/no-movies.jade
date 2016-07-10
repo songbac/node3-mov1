@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  p Sorry no movies in zip code #{zipcode}
+
+    form#formGetListing(name="movies", method="post", action="/listMovies")
+        input#inputZipCode(type="text", placeholder="Zip Code", name="zipcode")
+        button#btnSubmit(type="submit") submit
+

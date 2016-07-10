@@ -1,0 +1,23 @@
+extends layout
+ 
+block content
+    h1 Movie Showtime
+
+    form#formGetListing(name="movies", method="post", action="/listMovies")
+        input#inputZipCode(type="text", placeholder="Zip Code", name="zipcode")
+        button#btnSubmit(type="submit") submit
+
+    h2 Movies in theatres for #{movielist.zipcode} on #{movielist.show_date}
+    table(border=1)
+           thead
+               tr
+                   th Title
+                   th Genres
+           tbody
+               each movie, i in movielist.movie_listing
+                   tr
+                       td
+                           p= movie.title 
+                               td
+                                   p #{movie.genres}
+
