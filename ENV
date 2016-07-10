@@ -1,4 +1,5 @@
-ONCONNECT_API_KEY=wrf55khh44tdm93sj9t7gyaq
+#ONCONNECT_API_KEY=wrf55khh44tdm93sj9t7gyaq
 
+ONCONNECT_API_KEY=s2pxjenpf7mqtcyqzmcrqzfj
 export  ONCONNECT_API_KEY
 

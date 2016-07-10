@@ -4,6 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+// Database
+var db = require('mongodb').Db;
+var monk = require('monk');
+var db = monk('localhost:27017/movies_db1');
+
+// var MongoClient = require('mongodb').MongoClient;
+// Connect to the db
+// MongoClient.connect("mongodb://localhost:27017/movies_db1", function(err, db) {
+//  if(err) { return console.dir(err); }
+// });
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -21,6 +31,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
